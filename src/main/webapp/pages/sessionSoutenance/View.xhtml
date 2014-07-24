@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SessionSoutenanceViewDlg" widgetVar="SessionSoutenanceViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSessionSoutenanceTitle}">
+            <h:form id="SessionSoutenanceViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{sessionSoutenanceController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSessionSoutenanceLabel_datedebut}"/>
+                        <h:outputText value="#{sessionSoutenanceController.selected.datedebut}" title="#{bundle.ViewSessionSoutenanceTitle_datedebut}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSessionSoutenanceLabel_typid}"/>
+                        <h:outputText value="#{sessionSoutenanceController.selected.typid.type}" title="#{bundle.ViewSessionSoutenanceTitle_typid}"/>
+                        <h:outputText value="#{bundle.ViewSessionSoutenanceLabel_typid2}"/>
+                        <h:outputText value="#{sessionSoutenanceController.selected.typid2.type}" title="#{bundle.ViewSessionSoutenanceTitle_typid2}"/>
+                        
+                        <h:outputText value="#{bundle.ViewSessionSoutenanceLabel_secid}"/>
+                        <h:outputText value="#{sessionSoutenanceController.selected.secid.section}" title="#{bundle.ViewSessionSoutenanceTitle_secid}"/>
+                        
+                        <h:outputText value="#{bundle.ViewSessionSoutenanceLabel_duree}"/>
+                        <h:outputText value="#{sessionSoutenanceController.selected.duree}" title="#{bundle.ViewSessionSoutenanceTitle_duree}"/>
+                        
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SessionSoutenanceViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

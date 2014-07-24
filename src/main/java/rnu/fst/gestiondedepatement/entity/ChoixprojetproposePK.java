@@ -75,9 +75,5 @@ public class ChoixprojetproposePK implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.ChoixprojetproposePK[ etuid=" + etuid + ", id=" + id + " ]";
-    }
     
 }

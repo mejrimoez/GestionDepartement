@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjetViewDlg" widgetVar="ProjetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProjetTitle}">
+            <h:form id="ProjetViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{projetController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProjetLabel_nomProjet}"/>
+                        <h:outputText value="#{projetController.selected.nomProjet}" title="#{bundle.ViewProjetTitle_nomProjet}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_description}"/>
+                        <h:outputText value="#{projetController.selected.description}" title="#{bundle.ViewProjetTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_datesoutenance}"/>
+                        <h:outputText value="#{projetController.selected.datesoutenance}" title="#{bundle.ViewProjetTitle_datesoutenance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjetLabel_dureesoutenance}"/>
+                        <h:outputText value="#{projetController.selected.dureesoutenance}" title="#{bundle.ViewProjetTitle_dureesoutenance}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_raisonsociale}"/>
+                        <h:outputText value="#{projetController.selected.raisonsociale}" title="#{bundle.ViewProjetTitle_raisonsociale}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_responsablesociete}"/>
+                        <h:outputText value="#{projetController.selected.responsablesociete}" title="#{bundle.ViewProjetTitle_responsablesociete}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_adressesociete}"/>
+                        <h:outputText value="#{projetController.selected.adressesociete}" title="#{bundle.ViewProjetTitle_adressesociete}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_telsociete}"/>
+                        <h:outputText value="#{projetController.selected.telsociete}" title="#{bundle.ViewProjetTitle_telsociete}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_encadrantsociete}"/>
+                        <h:outputText value="#{projetController.selected.encadrantsociete}" title="#{bundle.ViewProjetTitle_encadrantsociete}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_fonctionecadrant}"/>
+                        <h:outputText value="#{projetController.selected.fonctionecadrant}" title="#{bundle.ViewProjetTitle_fonctionecadrant}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_emailencadrant}"/>
+                        <h:outputText value="#{projetController.selected.emailencadrant}" title="#{bundle.ViewProjetTitle_emailencadrant}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_telencadrant}"/>
+                        <h:outputText value="#{projetController.selected.telencadrant}" title="#{bundle.ViewProjetTitle_telencadrant}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_methodeconception}"/>
+                        <h:outputText value="#{projetController.selected.methodeconception}" title="#{bundle.ViewProjetTitle_methodeconception}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_langageprog}"/>
+                        <h:outputText value="#{projetController.selected.langageprog}" title="#{bundle.ViewProjetTitle_langageprog}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_outilprog}"/>
+                        <h:outputText value="#{projetController.selected.outilprog}" title="#{bundle.ViewProjetTitle_outilprog}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_remuneration}"/>
+                        <p:selectBooleanCheckbox value="#{projetController.selected.remuneration}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_sectionid}"/>
+                        <h:outputText value="#{projetController.selected.sectionid}" title="#{bundle.ViewProjetTitle_sectionid}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_specialiteid}"/>
+                        <h:outputText value="#{projetController.selected.specialiteid}" title="#{bundle.ViewProjetTitle_specialiteid}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_annid}"/>
+                        <h:outputText value="#{projetController.selected.annid}" title="#{bundle.ViewProjetTitle_annid}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_sessionid}"/>
+                        <h:outputText value="#{projetController.selected.sessionid}" title="#{bundle.ViewProjetTitle_sessionid}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_etuid2}"/>
+                        <h:outputText value="#{projetController.selected.etuid2}" title="#{bundle.ViewProjetTitle_etuid2}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_etuid}"/>
+                        <h:outputText value="#{projetController.selected.etuid}" title="#{bundle.ViewProjetTitle_etuid}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_codesalle}"/>
+                        <h:outputText value="#{projetController.selected.codesalle}" title="#{bundle.ViewProjetTitle_codesalle}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_enscin}"/>
+                        <h:outputText value="#{projetController.selected.enscin}" title="#{bundle.ViewProjetTitle_enscin}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_enscin2}"/>
+                        <h:outputText value="#{projetController.selected.enscin2}" title="#{bundle.ViewProjetTitle_enscin2}"/>
+                        <h:outputText value="#{bundle.ViewProjetLabel_cin}"/>
+                        <h:outputText value="#{projetController.selected.cin}" title="#{bundle.ViewProjetTitle_cin}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProjetViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

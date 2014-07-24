@@ -223,7 +223,7 @@ public class Enseignant implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Enseignant[ cin=" + cin + " ]";
+        return nom + " " + prenom;
     }
     
 }

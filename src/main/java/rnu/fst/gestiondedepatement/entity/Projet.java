@@ -380,7 +380,7 @@ public class Projet implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Projet[ id=" + id + " ]";
+        return nomProjet;
     }
     
 }

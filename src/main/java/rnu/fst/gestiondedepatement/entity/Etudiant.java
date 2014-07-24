@@ -243,7 +243,7 @@ public class Etudiant implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Etudiant[ id=" + id + " ]";
+        return nomprenom;
     }
     
 }

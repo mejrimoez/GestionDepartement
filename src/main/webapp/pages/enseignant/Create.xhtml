@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EnseignantCreateDlg" widgetVar="EnseignantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEnseignantTitle}">
+            <h:form id="EnseignantCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{enseignantController.selected.cin}" title="#{bundle.CreateEnseignantTitle_cin}" required="true" requiredMessage="#{bundle.CreateEnseignantRequiredMessage_cin}"/>
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{enseignantController.selected.nom}" title="#{bundle.CreateEnseignantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{enseignantController.selected.prenom}" title="#{bundle.CreateEnseignantTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_civilite}" for="civilite" />
+                        <p:inputText id="civilite" value="#{enseignantController.selected.civilite}" title="#{bundle.CreateEnseignantTitle_civilite}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{enseignantController.selected.email}" title="#{bundle.CreateEnseignantTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{enseignantController.selected.tel}" title="#{bundle.CreateEnseignantTitle_tel}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_id}" for="id" />
+                        <p:selectOneMenu id="id" value="#{enseignantController.selected.id}" required="true" requiredMessage="#{bundle.EditEnseignantRequiredMessage_id}">
+                            <f:selectItems value="#{gradeController.itemsAvailableSelectOne}"
+                                           var="idItem"
+                                           itemValue="#{idItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{enseignantController.create}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args,'EnseignantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

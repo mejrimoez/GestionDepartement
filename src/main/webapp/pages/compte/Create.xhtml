@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompteCreateDlg" widgetVar="CompteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCompteTitle}">
+            <h:form id="CompteCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{compteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCompteLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{compteController.selected.cin}" title="#{bundle.CreateCompteTitle_cin}" required="true" requiredMessage="#{bundle.CreateCompteRequiredMessage_cin}"/>
+                        <p:outputLabel value="#{bundle.CreateCompteLabel_motdepass}" for="motdepass" />
+                        <p:inputText id="motdepass" value="#{compteController.selected.motdepass}" title="#{bundle.CreateCompteTitle_motdepass}" />
+                        <p:outputLabel value="#{bundle.CreateCompteLabel_label}" for="label" />
+                        <p:inputText id="label" value="#{compteController.selected.label}" title="#{bundle.CreateCompteTitle_label}" />
+                        <p:outputLabel value="#{bundle.CreateCompteLabel_role}" for="role" />
+                        <p:inputText id="role" value="#{compteController.selected.role}" title="#{bundle.CreateCompteTitle_role}" />
+                        <p:outputLabel value="#{bundle.CreateCompteLabel_dateconnection}" for="dateconnection" />
+                        <p:calendar id="dateconnection" pattern="MM/dd/yyyy HH:mm:ss" value="#{compteController.selected.dateconnection}" title="#{bundle.EditCompteTitle_dateconnection}"  showOn="button"/>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{compteController.create}" value="#{bundle.Save}" update="display,:CompteListForm:datalist,:growl" oncomplete="handleSubmit(args,'CompteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

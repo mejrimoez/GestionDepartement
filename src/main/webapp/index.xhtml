@@ -1,14 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Authentification</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        <h:form id="loginForm">
+            <p:panel>
+                <f:facet name="header">Authentification</f:facet>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                <div class="dialog">
+                    <h:panelGrid columns="2" cellpadding="5" cellspacing="5"  rowClasses="prop" columnClasses="name,value">
+                        <p:outputLabel for="cin" value="CIN"/>
+                        <p:inputMask id="cin" mask="99999999" required="true" value="#{compteController.current.cin}"
+                                     requiredMessage="Veuiller entrer votre CIN"/>
+                        <p:outputLabel for="pass" value="MOT DE PASSE  "/>
+                        <p:password id="pass" value="#{compteController.current.motdepass}" required="true" 
+                                    requiredMessage="Veuiller entrer votre mot de passe"/>                        
+                    </h:panelGrid>
+                </div>
+                <div align="center">
+                    <p:commandButton id="submit" value="Connexion" action="#{compteController.login()}"
+                                     onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"/>
+                </div>
+            </p:panel>
+
+
+        </h:form>
+        <pe:blockUI widgetVar="blockUIWidget">
+            <h:panelGrid columns="2">
+                <h:graphicImage library="img" name="ajax-loader.gif"
+                                style="margin-right: 12px; vertical-align: middle;"/>
+                <h:outputText value="Veuiller Patienter..." style="white-space: nowrap;"/>
+            </h:panelGrid>
+        </pe:blockUI>
     </h:body>
 </html>
 

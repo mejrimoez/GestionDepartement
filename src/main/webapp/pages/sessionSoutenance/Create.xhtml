@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SessionSoutenanceCreateDlg" widgetVar="SessionSoutenanceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSessionSoutenanceTitle}">
+            <h:form id="SessionSoutenanceCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{sessionSoutenanceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSessionSoutenanceLabel_datedebut}" for="datedebut" />
+                        <p:calendar id="datedebut" pattern="dd/MM/yyyy" value="#{sessionSoutenanceController.selected.datedebut}" title="#{bundle.EditSessionSoutenanceTitle_datedebut}"  showOn="button" required="true" requiredMessage="#{bundle.CreateSessionSoutenanceRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSessionSoutenanceLabel_duree}" for="duree" />
+                        <p:inputText id="duree" value="#{sessionSoutenanceController.selected.duree}" title="#{bundle.CreateSessionSoutenanceTitle_duree}" required="" requiredMessage=" "/>
+                        <p:outputLabel value="#{bundle.CreateSessionSoutenanceLabel_typid2}" for="typid2" />
+                        <p:selectOneMenu id="typid2" value="#{sessionSoutenanceController.selected.typid2}" required="true" requiredMessage="#{bundle.EditSessionSoutenanceRequiredMessage_typid2}">
+                            <f:selectItems value="#{typeprojetController.itemsAvailableSelectOne}"
+                                           var="typid2Item"
+                                           itemValue="#{typid2Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSessionSoutenanceLabel_secid}" for="secid" />
+                        <p:selectOneMenu id="secid" value="#{sessionSoutenanceController.selected.secid}" required="true" requiredMessage="#{bundle.EditSessionSoutenanceRequiredMessage_secid}">
+                            <f:selectItems value="#{sectionController.itemsAvailableSelectOne}"
+                                           var="secidItem"
+                                           itemValue="#{secidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSessionSoutenanceLabel_typid}" for="typid" />
+                        <p:selectOneMenu id="typid" value="#{sessionSoutenanceController.selected.typid}" required="true" requiredMessage="#{bundle.EditSessionSoutenanceRequiredMessage_typid}">
+                            <f:selectItems value="#{typeSessionController.itemsAvailableSelectOne}"
+                                           var="typidItem"
+                                           itemValue="#{typidItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{sessionSoutenanceController.create}" value="#{bundle.Save}" update="display,:SessionSoutenanceListForm:datalist,:growl" oncomplete="handleSubmit(args,'SessionSoutenanceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SessionSoutenanceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

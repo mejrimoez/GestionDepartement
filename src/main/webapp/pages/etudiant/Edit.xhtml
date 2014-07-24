@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtudiantEditDlg" widgetVar="EtudiantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtudiantTitle}">
+            <h:form id="EtudiantEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{etudiantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{etudiantController.selected.cin}" title="#{bundle.EditEtudiantTitle_cin}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_nomprenom}" for="nomprenom" />
+                        <p:inputText id="nomprenom" value="#{etudiantController.selected.nomprenom}" title="#{bundle.EditEtudiantTitle_nomprenom}" />
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{etudiantController.selected.email}" title="#{bundle.EditEtudiantTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_datenaissance}" for="datenaissance" />
+                        <p:calendar id="datenaissance" pattern="MM/dd/yyyy" value="#{etudiantController.selected.datenaissance}" title="#{bundle.EditEtudiantTitle_datenaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_ins}" for="ins" />
+                        <p:inputText id="ins" value="#{etudiantController.selected.ins}" title="#{bundle.EditEtudiantTitle_ins}" />
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_secid}" for="secid" />
+                        <p:selectOneMenu id="secid" value="#{etudiantController.selected.secid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_secid}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sectionController.itemsAvailableSelectOne}"
+                                           var="secidItem"
+                                           itemValue="#{secidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_speid}" for="speid" />
+                        <p:selectOneMenu id="speid" value="#{etudiantController.selected.speid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_speid}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{specialiteController.itemsAvailableSelectOne}"
+                                           var="speidItem"
+                                           itemValue="#{speidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEtudiantLabel_annid}" for="annid" />
+                        <p:selectOneMenu id="annid" value="#{etudiantController.selected.annid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_annid}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{anneeuniversitaireController.itemsAvailableSelectOne}"
+                                           var="annidItem"
+                                           itemValue="#{annidItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{etudiantController.update}" value="#{bundle.Save}" update="display,:EtudiantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtudiantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtudiantEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

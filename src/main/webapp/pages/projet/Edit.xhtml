@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjetEditDlg" widgetVar="ProjetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProjetTitle}">
+            <h:form id="ProjetEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{projetController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProjetLabel_nomProjet}" for="nomProjet" />
+                        <p:inputText id="nomProjet" value="#{projetController.selected.nomProjet}" title="#{bundle.EditProjetTitle_nomProjet}" required="true" requiredMessage="#{bundle.EditProjetRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{projetController.selected.description}" title="#{bundle.EditProjetTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_datesoutenance}" for="datesoutenance" />
+                        <p:calendar id="datesoutenance" pattern="MM/dd/yyyy HH:mm:ss" value="#{projetController.selected.datesoutenance}" title="#{bundle.EditProjetTitle_datesoutenance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_dureesoutenance}" for="dureesoutenance" />
+                        <p:inputText id="dureesoutenance" value="#{projetController.selected.dureesoutenance}" title="#{bundle.EditProjetTitle_dureesoutenance}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_raisonsociale}" for="raisonsociale" />
+                        <p:inputText id="raisonsociale" value="#{projetController.selected.raisonsociale}" title="#{bundle.EditProjetTitle_raisonsociale}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_responsablesociete}" for="responsablesociete" />
+                        <p:inputText id="responsablesociete" value="#{projetController.selected.responsablesociete}" title="#{bundle.EditProjetTitle_responsablesociete}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_adressesociete}" for="adressesociete" />
+                        <p:inputText id="adressesociete" value="#{projetController.selected.adressesociete}" title="#{bundle.EditProjetTitle_adressesociete}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_telsociete}" for="telsociete" />
+                        <p:inputText id="telsociete" value="#{projetController.selected.telsociete}" title="#{bundle.EditProjetTitle_telsociete}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_encadrantsociete}" for="encadrantsociete" />
+                        <p:inputText id="encadrantsociete" value="#{projetController.selected.encadrantsociete}" title="#{bundle.EditProjetTitle_encadrantsociete}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_fonctionecadrant}" for="fonctionecadrant" />
+                        <p:inputText id="fonctionecadrant" value="#{projetController.selected.fonctionecadrant}" title="#{bundle.EditProjetTitle_fonctionecadrant}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_emailencadrant}" for="emailencadrant" />
+                        <p:inputText id="emailencadrant" value="#{projetController.selected.emailencadrant}" title="#{bundle.EditProjetTitle_emailencadrant}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_telencadrant}" for="telencadrant" />
+                        <p:inputText id="telencadrant" value="#{projetController.selected.telencadrant}" title="#{bundle.EditProjetTitle_telencadrant}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_methodeconception}" for="methodeconception" />
+                        <p:inputText id="methodeconception" value="#{projetController.selected.methodeconception}" title="#{bundle.EditProjetTitle_methodeconception}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_langageprog}" for="langageprog" />
+                        <p:inputText id="langageprog" value="#{projetController.selected.langageprog}" title="#{bundle.EditProjetTitle_langageprog}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_outilprog}" for="outilprog" />
+                        <p:inputText id="outilprog" value="#{projetController.selected.outilprog}" title="#{bundle.EditProjetTitle_outilprog}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_remuneration}" for="remuneration" />
+                        <p:selectBooleanCheckbox id="remuneration" value="#{projetController.selected.remuneration}" />
+                        <p:outputLabel value="#{bundle.EditProjetLabel_sectionid}" for="sectionid" />
+                        <p:selectOneMenu id="sectionid" value="#{projetController.selected.sectionid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sectionController.itemsAvailableSelectOne}"
+                                           var="sectionidItem"
+                                           itemValue="#{sectionidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_specialiteid}" for="specialiteid" />
+                        <p:selectOneMenu id="specialiteid" value="#{projetController.selected.specialiteid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{specialiteController.itemsAvailableSelectOne}"
+                                           var="specialiteidItem"
+                                           itemValue="#{specialiteidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_annid}" for="annid" />
+                        <p:selectOneMenu id="annid" value="#{projetController.selected.annid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{anneeuniversitaireController.itemsAvailableSelectOne}"
+                                           var="annidItem"
+                                           itemValue="#{annidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_sessionid}" for="sessionid" />
+                        <p:selectOneMenu id="sessionid" value="#{projetController.selected.sessionid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sessionSoutenanceController.itemsAvailableSelectOne}"
+                                           var="sessionidItem"
+                                           itemValue="#{sessionidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_etuid2}" for="etuid2" />
+                        <p:selectOneMenu id="etuid2" value="#{projetController.selected.etuid2}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etuid2Item"
+                                           itemValue="#{etuid2Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_etuid}" for="etuid" />
+                        <p:selectOneMenu id="etuid" value="#{projetController.selected.etuid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etuidItem"
+                                           itemValue="#{etuidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_codesalle}" for="codesalle" />
+                        <p:selectOneMenu id="codesalle" value="#{projetController.selected.codesalle}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{salleController.itemsAvailableSelectOne}"
+                                           var="codesalleItem"
+                                           itemValue="#{codesalleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_enscin}" for="enscin" />
+                        <p:selectOneMenu id="enscin" value="#{projetController.selected.enscin}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="enscinItem"
+                                           itemValue="#{enscinItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_enscin2}" for="enscin2" />
+                        <p:selectOneMenu id="enscin2" value="#{projetController.selected.enscin2}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="enscin2Item"
+                                           itemValue="#{enscin2Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProjetLabel_cin}" for="cin" />
+                        <p:selectOneMenu id="cin" value="#{projetController.selected.cin}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="cinItem"
+                                           itemValue="#{cinItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{projetController.update}" value="#{bundle.Save}" update="display,:ProjetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProjetEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProjetEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

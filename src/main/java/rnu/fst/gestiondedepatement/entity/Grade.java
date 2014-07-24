@@ -41,7 +41,7 @@ public class Grade implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Column(name = "grade")
-    private Integer grade;
+    private String grade;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private List<Enseignant> enseignantList;
 
@@ -60,11 +60,11 @@ public class Grade implements Serializable {
         this.id = id;
     }
 
-    public Integer getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
@@ -99,7 +99,7 @@ public class Grade implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Grade[ id=" + id + " ]";
+        return grade;
     }
     
 }

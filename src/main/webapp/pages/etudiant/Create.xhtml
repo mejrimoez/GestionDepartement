@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtudiantCreateDlg" widgetVar="EtudiantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEtudiantTitle}">
+            <h:form id="EtudiantCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{etudiantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{etudiantController.selected.cin}" title="#{bundle.CreateEtudiantTitle_cin}" requiredMessage="#{bundle.CreateEtudiantRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_nomprenom}" for="nomprenom" />
+                        <p:inputText id="nomprenom" value="#{etudiantController.selected.nomprenom}" title="#{bundle.CreateEtudiantTitle_nomprenom}" />
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{etudiantController.selected.email}" title="#{bundle.CreateEtudiantTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_datenaissance}" for="datenaissance" />
+                        <p:calendar id="datenaissance" pattern="MM/dd/yyyy" value="#{etudiantController.selected.datenaissance}" title="#{bundle.EditEtudiantTitle_datenaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_ins}" for="ins" />
+                        <p:inputText id="ins" value="#{etudiantController.selected.ins}" title="#{bundle.CreateEtudiantTitle_ins}" />
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_secid}" for="secid" />
+                        <p:selectOneMenu id="secid" value="#{etudiantController.selected.secid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_secid}">
+                            <f:selectItems value="#{sectionController.itemsAvailableSelectOne}"
+                                           var="secidItem"
+                                           itemValue="#{secidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_speid}" for="speid" />
+                        <p:selectOneMenu id="speid" value="#{etudiantController.selected.speid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_speid}">
+                            <f:selectItems value="#{specialiteController.itemsAvailableSelectOne}"
+                                           var="speidItem"
+                                           itemValue="#{speidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_annid}" for="annid" />
+                        <p:selectOneMenu id="annid" value="#{etudiantController.selected.annid}" required="true" requiredMessage="#{bundle.EditEtudiantRequiredMessage_annid}">
+                            <f:selectItems value="#{anneeuniversitaireController.itemsAvailableSelectOne}"
+                                           var="annidItem"
+                                           itemValue="#{annidItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{etudiantController.create}" value="#{bundle.Save}" update="display,:EtudiantListForm:datalist,:growl" oncomplete="handleSubmit(args,'EtudiantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtudiantCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

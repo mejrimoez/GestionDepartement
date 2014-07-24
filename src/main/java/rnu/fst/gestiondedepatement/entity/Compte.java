@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Compte.findAll", query = "SELECT c FROM Compte c"),
     @NamedQuery(name = "Compte.findByCin", query = "SELECT c FROM Compte c WHERE c.cin = :cin"),
     @NamedQuery(name = "Compte.findByMotdepass", query = "SELECT c FROM Compte c WHERE c.motdepass = :motdepass"),
+    @NamedQuery(name = "Compte.findByCredentials", query = "SELECT c FROM Compte c WHERE c.cin = :cin and c.motdepass = :motdepass"),
     @NamedQuery(name = "Compte.findByLabel", query = "SELECT c FROM Compte c WHERE c.label = :label"),
     @NamedQuery(name = "Compte.findByRole", query = "SELECT c FROM Compte c WHERE c.role = :role"),
     @NamedQuery(name = "Compte.findByDateconnection", query = "SELECT c FROM Compte c WHERE c.dateconnection = :dateconnection")})
@@ -125,7 +126,7 @@ public class Compte implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Compte[ cin=" + cin + " ]";
+        return label;
     }
     
 }

@@ -111,7 +111,7 @@ public class Salle implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Salle[ codesalle=" + codesalle + " ]";
+        return salle;
     }
     
 }

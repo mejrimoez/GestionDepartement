@@ -135,7 +135,7 @@ public class Specialite implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Specialite[ id=" + id + " ]";
+        return specialite;
     }
     
 }

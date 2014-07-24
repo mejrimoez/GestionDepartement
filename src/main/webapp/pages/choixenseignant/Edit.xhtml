@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ChoixenseignantEditDlg" widgetVar="ChoixenseignantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditChoixenseignantTitle}">
+            <h:form id="ChoixenseignantEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{choixenseignantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditChoixenseignantLabel_datechoix}" for="datechoix" />
+                        <p:calendar id="datechoix" pattern="MM/dd/yyyy HH:mm:ss" value="#{choixenseignantController.selected.datechoix}" title="#{bundle.EditChoixenseignantTitle_datechoix}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditChoixenseignantLabel_numchoix}" for="numchoix" />
+                        <p:inputText id="numchoix" value="#{choixenseignantController.selected.numchoix}" title="#{bundle.EditChoixenseignantTitle_numchoix}" />
+                        <p:outputLabel value="#{bundle.EditChoixenseignantLabel_etat}" for="etat" />
+                        <p:selectBooleanCheckbox id="etat" value="#{choixenseignantController.selected.etat}" />
+                        <p:outputLabel value="#{bundle.EditChoixenseignantLabel_enseignant}" for="enseignant" />
+                        <p:selectOneMenu id="enseignant" value="#{choixenseignantController.selected.enseignant}" required="true" requiredMessage="#{bundle.EditChoixenseignantRequiredMessage_enseignant}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="enseignantItem"
+                                           itemValue="#{enseignantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditChoixenseignantLabel_etudiant}" for="etudiant" />
+                        <p:selectOneMenu id="etudiant" value="#{choixenseignantController.selected.etudiant}" required="true" requiredMessage="#{bundle.EditChoixenseignantRequiredMessage_etudiant}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etudiantItem"
+                                           itemValue="#{etudiantItem}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{choixenseignantController.update}" value="#{bundle.Save}" update="display,:ChoixenseignantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ChoixenseignantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ChoixenseignantEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

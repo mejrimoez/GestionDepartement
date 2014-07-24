@@ -101,7 +101,7 @@ public class TypeSession implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.TypeSession[ id=" + id + " ]";
+        return type;
     }
     
 }

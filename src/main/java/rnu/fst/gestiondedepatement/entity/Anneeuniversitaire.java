@@ -123,7 +123,7 @@ public class Anneeuniversitaire implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Anneeuniversitaire[ id=" + id + " ]";
+        return anneeuniversitaire;
     }
     
 }

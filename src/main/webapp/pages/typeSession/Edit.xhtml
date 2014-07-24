@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TypeSessionEditDlg" widgetVar="TypeSessionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTypeSessionTitle}">
+            <h:form id="TypeSessionEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{typeSessionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTypeSessionLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{typeSessionController.selected.type}" title="#{bundle.EditTypeSessionTitle_type}"  required="true" requiredMessage="#{bundle.EditTypeSessionRequiredMessage_id}"/>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{typeSessionController.update}" value="#{bundle.Save}" update="display,:TypeSessionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TypeSessionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TypeSessionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

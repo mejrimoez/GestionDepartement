@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ProposeprojetViewDlg" widgetVar="ProposeprojetViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProposeprojetTitle}">
+                <h:form id="ProposeprojetViewForm">
+                    <h:panelGroup id="display">
+                        <h:panelGrid columns="2" rendered="#{proposeprojetController.selected != null}">
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_nomProjet}"/>
+                            <h:outputText value="#{proposeprojetController.selected.nomProjet}" title="#{bundle.ViewProposeprojetTitle_nomProjet}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_description}"/>
+                            <h:outputText value="#{proposeprojetController.selected.description}" title="#{bundle.ViewProposeprojetTitle_description}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_raisonsociale}"/>
+                            <h:outputText value="#{proposeprojetController.selected.raisonsociale}" title="#{bundle.ViewProposeprojetTitle_raisonsociale}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_responsablesociete}"/>
+                            <h:outputText value="#{proposeprojetController.selected.responsablesociete}" title="#{bundle.ViewProposeprojetTitle_responsablesociete}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_adressesociete}"/>
+                            <h:outputText value="#{proposeprojetController.selected.adressesociete}" title="#{bundle.ViewProposeprojetTitle_adressesociete}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_telsociete}"/>
+                            <h:outputText value="#{proposeprojetController.selected.telsociete}" title="#{bundle.ViewProposeprojetTitle_telsociete}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_encadreursociete}"/>
+                            <h:outputText value="#{proposeprojetController.selected.encadreursociete}" title="#{bundle.ViewProposeprojetTitle_encadreursociete}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_fonctionencadrant}"/>
+                            <h:outputText value="#{proposeprojetController.selected.fonctionencadrant}" title="#{bundle.ViewProposeprojetTitle_fonctionencadrant}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_emailencadrant}"/>
+                            <h:outputText value="#{proposeprojetController.selected.emailencadrant}" title="#{bundle.ViewProposeprojetTitle_emailencadrant}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_telencadrant}"/>
+                            <h:outputText value="#{proposeprojetController.selected.telencadrant}" title="#{bundle.ViewProposeprojetTitle_telencadrant}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_methodeconception}"/>
+                            <h:outputText value="#{proposeprojetController.selected.methodeconception}" title="#{bundle.ViewProposeprojetTitle_methodeconception}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_langeprog}"/>
+                            <h:outputText value="#{proposeprojetController.selected.langeprog}" title="#{bundle.ViewProposeprojetTitle_langeprog}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_outilprog}"/>
+                            <h:outputText value="#{proposeprojetController.selected.outilprog}" title="#{bundle.ViewProposeprojetTitle_outilprog}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_remuneration}"/>
+                            <h:outputText value="#{proposeprojetController.selected.remuneration}" title="#{bundle.ViewProposeprojetTitle_remuneration}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_datepropose}"/>
+                            <h:outputText value="#{proposeprojetController.selected.datepropose}" title="#{bundle.ViewProposeprojetTitle_datepropose}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_proposepar}"/>
+                            <h:outputText value="#{proposeprojetController.selected.proposepar}" title="#{bundle.ViewProposeprojetTitle_proposepar}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_speid}"/>
+                            <h:outputText value="#{proposeprojetController.selected.speid}" title="#{bundle.ViewProposeprojetTitle_speid}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_annid}"/>
+                            <h:outputText value="#{proposeprojetController.selected.annid}" title="#{bundle.ViewProposeprojetTitle_annid}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_secid}"/>
+                            <h:outputText value="#{proposeprojetController.selected.secid}" title="#{bundle.ViewProposeprojetTitle_secid}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_etuid}"/>
+                            <h:outputText value="#{proposeprojetController.selected.etuid}" title="#{bundle.ViewProposeprojetTitle_etuid}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_etuid2}"/>
+                            <h:outputText value="#{proposeprojetController.selected.etuid2}" title="#{bundle.ViewProposeprojetTitle_etuid2}"/>
+                            <h:outputText value="#{bundle.ViewProposeprojetLabel_cin}"/>
+                            <h:outputText value="#{proposeprojetController.selected.cin}" title="#{bundle.ViewProposeprojetTitle_cin}"/>
+                        </h:panelGrid>
+                        <p:commandButton value="#{bundle.Close}" onclick="ProposeprojetViewDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+    </ui:composition>
+</html>

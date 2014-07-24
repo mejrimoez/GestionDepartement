@@ -101,7 +101,7 @@ public class Typeprojet implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Typeprojet[ id=" + id + " ]";
+        return type;
     }
     
 }

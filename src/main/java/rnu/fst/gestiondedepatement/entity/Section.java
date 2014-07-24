@@ -134,7 +134,7 @@ public class Section implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Section[ id=" + id + " ]";
+        return section;
     }
     
 }

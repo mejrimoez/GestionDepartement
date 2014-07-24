@@ -270,7 +270,7 @@ public class Proposeprojet implements Serializable {
     }
 
     public void setProposepar(String proposepar) {
-        this.proposepar = proposepar;
+        this.proposepar = proposepar.toUpperCase();
     }
 
     @XmlTransient
@@ -352,7 +352,7 @@ public class Proposeprojet implements Serializable {
 
     @Override
     public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Proposeprojet[ id=" + id + " ]";
+        return nomProjet;
     }
     
 }

@@ -131,9 +131,5 @@ public class Choixprojetpropose implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "rnu.fst.gestiondedepatement.entity.Choixprojetpropose[ choixprojetproposePK=" + choixprojetproposePK + " ]";
-    }
-    
+  
 }

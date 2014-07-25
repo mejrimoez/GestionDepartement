@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.3"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.3
+                                http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+    <url-mapping id="Index">
+        <pattern value="/"/>
+        <view-id value="/index.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdministrateurIndex">
+        <pattern value="/Espace_Administrateur/"/>
+        <view-id value="/WEB-INF/espaceAdministrateur/index.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdministratifIndex">
+        <pattern value="/Espace_Administratif/"/>
+        <view-id value="/WEB-INF/espaceAdministratif/index.xhtml"/>
+    </url-mapping>
+    <url-mapping id="EnseignantIndex">
+        <pattern value="/Espace_Enseignant/"/>
+        <view-id value="/WEB-INF/espaceEnseignant/index.xhtml"/>
+    </url-mapping>
+    <url-mapping id="EtudiantIndex">
+        <pattern value="/Espace_Etudiant/"/>
+        <view-id value="/WEB-INF/espaceEtudiant/index.xhtml"/> 
+    </url-mapping>
+
+    <url-mapping id="AdminPlanification">
+        <pattern value="/Espace_Administrateur/Planification"/>
+        <view-id value="/WEB-INF/pages/sessionSoutenance/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminExportation">
+        <pattern value="/Espace_Administrateur/Exportation"/>
+        <view-id value="/WEB-INF/pages/sessionSoutenance/List.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="AdminGestionTypesSessions">
+        <pattern value="/Espace_Administrateur/Types_de_Sessions"/>
+        <view-id value="/WEB-INF/pages/typeSession/List.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="AdminGestionTypesProjets">
+        <pattern value="/Espace_Administrateur/Types_de_projets"/>
+        <view-id value="/WEB-INF/pages/typeprojet/List.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="AdminGestionAU">
+        <pattern value="/Espace_Administrateur/Annees_universitaires"/>
+        <view-id value="/WEB-INF/pages/anneeuniversitaire/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionEnseignants">
+        <pattern value="/Espace_Administrateur/Enseignants"/>
+        <view-id value="/WEB-INF/pages/enseignant/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionEtudiants">
+        <pattern value="/Espace_Administrateur/Etudiants"/>
+        <view-id value="/WEB-INF/pages/etudiant/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionGrades">
+        <pattern value="/Espace_Administrateur/Grades"/>
+        <view-id value="/WEB-INF/pages/grade/List.xhtml"/>
+    </url-mapping>
+    
+     <url-mapping id="AdminGestionSalles">
+        <pattern value="/Espace_Administrateur/Salles"/>
+        <view-id value="/WEB-INF/pages/salle/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionSpecialites">
+        <pattern value="/Espace_Administrateur/Specialites"/>
+        <view-id value="/WEB-INF/pages/specialite/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionSections">
+        <pattern value="/Espace_Administrateur/Sections"/>
+        <view-id value="/WEB-INF/pages/section/List.xhtml"/>
+    </url-mapping>
+    <url-mapping id="AdminGestionUtilisateurs">
+        <pattern value="/Espace_Administrateur/Administration"/>
+        <view-id value="/WEB-INF/pages/compte/List.xhtml"/>
+    </url-mapping>
+    
+    <url-mapping id="AdminPropositionProjets">
+
+        <pattern value="/Espace_Administrateur/Proposition_projets"/>
+        <view-id value="/WEB-INF/pages/compte/List.xhtml"/>
+    </url-mapping>
+    
+    <url-mapping id="AdminAffectationProjets">
+        <pattern value="/Espace_Administrateur/Affectation_projets"/>
+        <view-id value="/WEB-INF/pages/compte/List.xhtml"/>
+    </url-mapping>
+    
+
+
+</pretty-config>

@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">Espace Administrateur</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
@@ -22,63 +22,45 @@
                 <h:form id="user_panel">
                     <h:panelGrid columns="2">
                         <h:panelGrid columns="1" cellpadding="3">
-                            <h:outputText value="Connecté en tant que : "/>
-                            <h:outputText style="text-transform: uppercase;font-size: large;font-weight: bold" value="#{compteController.current.role}"/>
+                            <h:outputText style="text-transform: uppercase;" value="Connecté en tant que: #{compteController.current.role}"/>
+                            <h:outputText style="text-transform: uppercase;font-size: large;font-weight: bold" value="#{compteController.current.label}"/>
                         </h:panelGrid>
                         <h:panelGrid columns="2" cellpadding="3">
                             <h:column>
                                 <p:commandButton id="dynaButton"  type="button" icon="ui-icon-person"/>
                                 <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
                                     <p:submenu label="Modifier Compte">
-                                        <p:menuitem value="Données du compte" action="pretty:AdminModifierCompte" />
+                                        <p:menuitem value="Données du compte" />
                                     </p:submenu>                                
                                 </p:menu>
                             </h:column>
-                            <p:commandButton icon="ui-icon-power" action="#{usersController.deconnect()}"
+                            <p:commandButton icon="ui-icon-power" action="#{compteController.deconnect()}"
                                              onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"/>
                         </h:panelGrid>
                     </h:panelGrid>
                 </h:form>
                 <h:form id="menuForm">
                     <p:menubar style="width: 600px;display: block;margin: 0 auto;">
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:menuitem value="#{bundle.Home}" outcome="pretty:AdministrateurIndex" icon="ui-icon-home"/>
                         <p:submenu label="Soutenances">
-                            <p:menuitem value="Planification" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Exportation" outcome="/pages//anneeuniversitaire/List.xhtml"/>
+                            <p:menuitem value="Planification" outcome="pretty:AdminPlanification"/>
+                            <p:menuitem value="Exportation" outcome="pretty:AdminExportation"/>
                         </p:submenu> 
                         <p:submenu label="Projets">
-                            <p:menuitem value="Proposition" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Affectation" outcome="/pages//anneeuniversitaire/List.xhtml"/>
+                            <p:menuitem value="Proposition" outcome="pretty:AdminPropositionProjets"/>
+                            <p:menuitem value="Affectation" outcome="pretty:AdminAffectationProjets"/>
                         </p:submenu> 
                         <p:submenu label="Configuration">
-                            <p:menuitem value="Années Universitaires" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Sections" outcome="/pages//section/List.xhtml"/>
-                            <p:menuitem value="Salles" outcome="/pages//salle/List.xhtml"/>
-                            <p:menuitem value="Types de projets" outcome="/pages//typeprojet/List.xhtml"/>
-                            <p:menuitem value="Types de sessions" outcome="/pages//typeSession/List.xhtml"/>
-                            <p:menuitem value="Grades" outcome="/pages//grade/List.xhtml"/>
-                            <p:menuitem value="Spécialités" outcome="/pages//specialite/List.xhtml"/>
-                            <p:menuitem value="Ensignants" outcome="/pages//enseignant/List.xhtml"/>
-                            <p:menuitem value="Etudiants" outcome="/pages//etudiant/List.xhtml"/>
-                            <p:menuitem value="Administration" outcome="/pages//compte/List.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Toutes...">
-                            <p:menuitem value="Anneeuniversitaire" outcome="/pages//anneeuniversitaire/List.xhtml" />
-                            <p:menuitem value="Choixenseignant" outcome="/pages//choixenseignant/List.xhtml" />
-                            <p:menuitem value="Choixprojetpropose" outcome="/pages//choixprojetpropose/List.xhtml" />
-                            <p:menuitem value="Compte" outcome="/pages//compte/List.xhtml" />
-                            <p:menuitem value="Enseignant" outcome="/pages//enseignant/List.xhtml" />
-                            <p:menuitem value="Etudiant" outcome="/pages//etudiant/List.xhtml" />
-                            <p:menuitem value="Grade" outcome="/pages//grade/List.xhtml" />
-                            <p:menuitem value="Projet" outcome="/pages//projet/List.xhtml" />
-                            <p:menuitem value="Proposeprojet" outcome="/pages//proposeprojet/List.xhtml" />
-                            <p:menuitem value="Salle" outcome="/pages//salle/List.xhtml" />
-                            <p:menuitem value="Section" outcome="/pages//section/List.xhtml" />
-                            <p:menuitem value="SessionSoutenance" outcome="/pages//sessionSoutenance/List.xhtml" />
-                            <p:menuitem value="Specialite" outcome="/pages//specialite/List.xhtml" />
-                            <p:menuitem value="TypeSession" outcome="/pages//typeSession/List.xhtml" />
-                            <p:menuitem value="Typeprojet" outcome="/pages//typeprojet/List.xhtml" />
+                            <p:menuitem value="Années Universitaires" outcome="pretty:AdminGestionAU"/>
+                            <p:menuitem value="Sections" outcome="pretty:AdminGestionSections"/>
+                            <p:menuitem value="Salles" outcome="pretty:AdminGestionSalles"/>
+                            <p:menuitem value="Types de projets" outcome="pretty:AdminGestionTypesProjets"/>
+                            <p:menuitem value="Types de sessions" outcome="pretty:AdminGestionTypesSessions"/>
+                            <p:menuitem value="Grades" outcome="pretty:AdminGestionGrades"/>
+                            <p:menuitem value="Spécialités" outcome="pretty:AdminGestionSpecialites"/>
+                            <p:menuitem value="Ensignants" outcome="pretty:AdminGestionEnseignants"/>
+                            <p:menuitem value="Etudiants" outcome="pretty:AdminGestionEtudiants"/>
+                            <p:menuitem value="Administration" outcome="pretty:AdminGestionUtilisateurs"/>
                         </p:submenu>
                     </p:menubar>
                 </h:form>
@@ -87,26 +69,27 @@
             <p:layoutUnit position="west" styleClass="menuGauche" size="220" resizable="false" closable="false" collapsible="true">
                 <h:form style="width: 200px;">
                     <p:slideMenu style="width: 200px;height: 200px" backLabel="Retour">
-                        <p:submenu label="Soutenances">
-                            <p:menuitem value="Planification" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Exportation" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                        </p:submenu>
+                      <p:submenu label="Soutenances">
+                            <p:menuitem value="Planification" outcome="pretty:AdminPlanification"/>
+                            <p:menuitem value="Exportation" outcome="pretty:AdminExportation"/>
+                        </p:submenu> 
                         <p:submenu label="Projets">
-                            <p:menuitem value="Proposition" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Affectation" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                        </p:submenu>
+                            <p:menuitem value="Proposition" outcome="pretty:AdminPropositionProjets"/>
+                            <p:menuitem value="Affectation" outcome="pretty:AdminAffectationProjets"/>
+                        </p:submenu> 
                         <p:submenu label="Configuration">
-                            <p:menuitem value="Années Universitaires" outcome="/pages//anneeuniversitaire/List.xhtml"/>
-                            <p:menuitem value="Sections" outcome="/pages//section/List.xhtml"/>
-                            <p:menuitem value="Salles" outcome="/pages//salle/List.xhtml"/>
-                            <p:menuitem value="Types de projets" outcome="/pages//typeprojet/List.xhtml"/>
-                            <p:menuitem value="Types de sessions" outcome="/pages//typeSession/List.xhtml"/>
-                            <p:menuitem value="Grades" outcome="/pages//grade/List.xhtml"/>
-                            <p:menuitem value="Spécialités" outcome="/pages//specialite/List.xhtml"/>
-                            <p:menuitem value="Ensignants" outcome="/pages//enseignant/List.xhtml"/>
-                            <p:menuitem value="Etudiants" outcome="/pages//etudiant/List.xhtml"/>
-                            <p:menuitem value="Administration" outcome="/pages//compte/List.xhtml"/>
+                            <p:menuitem value="Années Universitaires" outcome="pretty:AdminGestionAU"/>
+                            <p:menuitem value="Sections" outcome="pretty:AdminGestionSections"/>
+                            <p:menuitem value="Salles" outcome="pretty:AdminGestionSalles"/>
+                            <p:menuitem value="Types de projets" outcome="pretty:AdminGestionTypesProjets"/>
+                            <p:menuitem value="Types de sessions" outcome="pretty:AdminGestionTypesSessions"/>
+                            <p:menuitem value="Grades" outcome="pretty:AdminGestionGrades"/>
+                            <p:menuitem value="Spécialités" outcome="pretty:AdminGestionSpecialites"/>
+                            <p:menuitem value="Ensignants" outcome="pretty:AdminGestionEnseignants"/>
+                            <p:menuitem value="Etudiants" outcome="pretty:AdminGestionEtudiants"/>
+                            <p:menuitem value="Administration" outcome="pretty:AdminGestionUtilisateurs"/>
                         </p:submenu>
+
                     </p:slideMenu>
                 </h:form>
             </p:layoutUnit>

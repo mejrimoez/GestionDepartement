@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="template_administrateur.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Espace Administrateur | Données du compte"/>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="forminfos" style="width: 400px;position: relative;margin: 130px auto;">
+                <p:growl id="growl" />
+                <p:panel header="Informations Personnelles">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="Pseudo :"/>
+                        <h:outputText value="#{compteController.current.label}"/>
+                        <h:outputText value="Login (CIN) :"/>
+                        <h:outputText value="#{compteController.current.cin}"/>
+                        <h:outputText value="Mot de passe :"/>
+                        <h:outputText value='#{compteController.current.motdepass} ' />
+                        <p:commandButton icon="ui-icon-pencil" value="Modifier les Informations" oncomplete="PF('dlg').show()"/>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+
+            <p:dialog id="dialog" widgetVar="dlg" modal="true" appendTo="@(body)"
+                      header="Modification des informations du compte">
+                <h:form>
+                    <h:panelGroup id="display">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel for="pseudo" value="Pseudo :"/>
+                            <p:inputText id="pseudo" value="#{compteController.current.label}"/>
+                            <p:outputLabel for="cin" value="Login (CIN):"/>
+                            <p:inputMask id="cin" mask="99999999" value="#{compteController.current.cin}"/>
+                            <p:outputLabel for="pass" value="Mot de passe :"/>
+                            <p:inputText id="pass" value='#{compteController.current.motdepass} ' />
+                        </h:panelGrid>
+                    </h:panelGroup>
+                    <p:commandButton value="Enregistrer" actionListener="#{compteController.updateSelfInfos()}" 
+                                     update="display,:forminfos,:growl" 
+                                     oncomplete="handleSubmit(args, 'dlg');"/>
+                    <p:commandButton value="Annuler" onclick="dlg.hide()"/>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -20,22 +20,20 @@
                 <h:graphicImage id="logofst" library="img" name="logo_fst.png" alt="fst"/>
 
                 <h:form id="user_panel">
-                    <h:panelGrid columns="2">
+                    <h:panelGrid id="user_panel_inf" columns="2">
                         <h:panelGrid columns="1" cellpadding="3">
                             <h:outputText style="text-transform: uppercase;" value="Connecté en tant que: #{compteController.current.role}"/>
                             <h:outputText style="text-transform: uppercase;font-size: large;font-weight: bold" value="#{compteController.current.label}"/>
                         </h:panelGrid>
                         <h:panelGrid columns="2" cellpadding="3">
                             <h:column>
-                                <p:commandButton id="dynaButton"  type="button" icon="ui-icon-person"/>
-                                <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
-                                    <p:submenu label="Modifier Compte">
-                                        <p:menuitem value="Données du compte" />
-                                    </p:submenu>                                
-                                </p:menu>
+                                <p:commandButton id="dynaButton" icon="ui-icon-person" action="pretty:AdminModifCompte"
+                                                 onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"/>
+                                <p:tooltip for="dynaButton" value="Modifier le profil" />
                             </h:column>
-                            <p:commandButton icon="ui-icon-power" action="#{compteController.deconnect()}"
+                            <p:commandButton id="deconnect_button" icon="ui-icon-power" action="#{compteController.deconnect()}"
                                              onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"/>
+                            <p:tooltip for="deconnect_button" value="Déconnexion du compte" />
                         </h:panelGrid>
                     </h:panelGrid>
                 </h:form>
@@ -69,7 +67,7 @@
             <p:layoutUnit position="west" styleClass="menuGauche" size="220" resizable="false" closable="false" collapsible="true">
                 <h:form style="width: 200px;">
                     <p:slideMenu style="width: 200px;height: 200px" backLabel="Retour">
-                      <p:submenu label="Soutenances">
+                        <p:submenu label="Soutenances">
                             <p:menuitem value="Planification" outcome="pretty:AdminPlanification"/>
                             <p:menuitem value="Exportation" outcome="pretty:AdminExportation"/>
                         </p:submenu> 

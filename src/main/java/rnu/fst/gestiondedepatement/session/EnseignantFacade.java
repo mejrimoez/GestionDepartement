@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import rnu.fst.gestiondedepatement.entity.Enseignant;
+import rnu.fst.gestiondedepatement.entity.Etudiant;
 
 /**
  *
@@ -27,6 +28,17 @@ public class EnseignantFacade extends AbstractFacade<Enseignant> {
 
     public EnseignantFacade() {
         super(Enseignant.class);
+    }
+    
+        public Enseignant findByCin(String cin)
+    {
+        Enseignant e;
+        try {
+            e = (Enseignant) getEntityManager().createNamedQuery("Enseignant.findByCin").getSingleResult();
+            return e;
+        } catch (Exception ex) {
+            return null;
+        }    
     }
     
 }

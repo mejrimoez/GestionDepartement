@@ -22,7 +22,7 @@
                         <h:outputText value="#{compteController.selected.role}" title="#{bundle.ViewCompteTitle_role}"/>
                         <h:outputText value="#{bundle.ViewCompteLabel_dateconnection}"/>
                         <h:outputText value="#{compteController.selected.dateconnection}" title="#{bundle.ViewCompteTitle_dateconnection}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                         </h:outputText>
                     </h:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CompteViewDialog.hide()"/>

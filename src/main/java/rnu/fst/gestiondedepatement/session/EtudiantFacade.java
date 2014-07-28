@@ -29,4 +29,15 @@ public class EtudiantFacade extends AbstractFacade<Etudiant> {
         super(Etudiant.class);
     }
     
+    public Etudiant findByCin(String cin)
+    {
+        Etudiant e;
+        try {
+            e = (Etudiant) getEntityManager().createNamedQuery("Etudiant.findByCin").getSingleResult();
+            return e;
+        } catch (Exception ex) {
+            return null;
+        }    
+    }
+    
 }

@@ -1,18 +1,14 @@
 package rnu.fst.gestiondedepatement.controller;
 
-import rnu.fst.gestiondedepatement.entity.Compte;
-import rnu.fst.gestiondedepatement.controller.util.JsfUtil;
-import rnu.fst.gestiondedepatement.controller.util.JsfUtil.PersistAction;
-import rnu.fst.gestiondedepatement.session.CompteFacade;
-
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -20,7 +16,17 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import rnu.fst.gestiondedepatement.controller.util.JsfUtil;
+import rnu.fst.gestiondedepatement.controller.util.JsfUtil.PersistAction;
+import rnu.fst.gestiondedepatement.entity.Compte;
+import rnu.fst.gestiondedepatement.entity.Enseignant;
+import rnu.fst.gestiondedepatement.entity.Etudiant;
+import rnu.fst.gestiondedepatement.session.CompteFacade;
+import rnu.fst.gestiondedepatement.session.EnseignantFacade;
+import rnu.fst.gestiondedepatement.session.EtudiantFacade;
 
 @Named("compteController")
 @SessionScoped
@@ -28,9 +34,15 @@ public class CompteController implements Serializable {
 
     @EJB
     private rnu.fst.gestiondedepatement.session.CompteFacade ejbFacade;
+    @EJB
+    private rnu.fst.gestiondedepatement.session.EtudiantFacade etudiantFacade;
+    @EJB
+    private rnu.fst.gestiondedepatement.session.EnseignantFacade enseignantFacade;
     private List<Compte> items = null;
     private Compte selected;
     private Compte current;
+    private Etudiant currentEtudiant;
+    private Enseignant currentEnseignant;
 
     public CompteController() {
         current = new Compte();
@@ -52,12 +64,44 @@ public class CompteController implements Serializable {
         this.ejbFacade = ejbFacade;
     }
 
+    public EtudiantFacade getEtudiantFacade() {
+        return etudiantFacade;
+    }
+
+    public void setEtudiantFacade(EtudiantFacade etudiantFacade) {
+        this.etudiantFacade = etudiantFacade;
+    }
+
+    public EnseignantFacade getEnseignantFacade() {
+        return enseignantFacade;
+    }
+
+    public void setEnseignantFacade(EnseignantFacade enseignantFacade) {
+        this.enseignantFacade = enseignantFacade;
+    }
+
     public Compte getCurrent() {
         return current;
     }
 
     public void setCurrent(Compte current) {
         this.current = current;
+    }
+
+    public Etudiant getCurrentEtudiant() {
+        return currentEtudiant;
+    }
+
+    public void setCurrentEtudiant(Etudiant currentEtudiant) {
+        this.currentEtudiant = currentEtudiant;
+    }
+
+    public Enseignant getCurrentEnseignant() {
+        return currentEnseignant;
+    }
+
+    public void setCurrentEnseignant(Enseignant currentEnseignant) {
+        this.currentEnseignant = currentEnseignant;
     }
 
     protected void setEmbeddableKeys() {
@@ -87,6 +131,33 @@ public class CompteController implements Serializable {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CompteUpdated"));
     }
 
+    public String updateSelfInfos() throws IOException {
+        if (current != null) {
+            try {
+                getFacade().edit(current);
+                JsfUtil.addSuccessMessage("Compte mis à jour avec succés");
+            } catch (Exception e) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+                JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+        return getIndex();
+    }
+
+    public String getIndex() {
+        switch (current.getRole()) {
+            case "etudiant":
+                return "pretty:EtudiantIndex";
+            case "enseignant":
+                return "pretty:EnseignantIndex";
+            case "administratif":
+                return "pretty:AdministratifIndex";
+            case "administrateur":
+                return "pretty:AdministrateurIndex";    
+        }
+        return "";
+    }
+
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CompteDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -107,24 +178,48 @@ public class CompteController implements Serializable {
         if (c == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur",
-                            "Vérifier votre CIN et votre mot de passe ! "));
+                            "Votre CIN ou votre mot de passe sont incorrects !"));
+            current = new Compte();
             return null;
         } else {
-            switch (c.getRole()) {
+            String reponse = "", role = c.getRole();
+            switch (role) {
                 case "etudiant":
-                    return "pretty:EtudiantIndex";
+                    reponse = "pretty:EtudiantIndex";
+                    Etudiant et = getEtudiantFacade().findByCin(c.getCin());
+                    if (et != null) {
+                        currentEtudiant = et;
+                    }
+                    break;
                 case "enseignant":
-                    return "pretty:EnseignantIndex";
+                    reponse = "pretty:EnseignantIndex";
+                    Enseignant ens = getEnseignantFacade().findByCin(c.getCin());
+                    if (ens != null) {
+                        currentEnseignant = ens;
+                    }
+                    break;
                 case "administratif":
-                    return "pretty:AdministratifIndex";
+                    reponse = "pretty:AdministratifIndex";
+                    break;
                 case "administrateur":
-                    return "pretty:AdministrateurIndex";
-                default:
-                    FacesContext.getCurrentInstance().addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur",
-                                    "Vérifier votre CIN et votre mot de passe ! "));
-                    return null;
+                    reponse = "pretty:AdministrateurIndex";
+                    break;
             }
+
+            // enregistrement date du derniere connection     
+            c.setDateconnection(new Date());
+            getFacade().edit(c);
+
+            // chargement de la page 
+            if (reponse.equals("")) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur",
+                                "Vous n'êtes pas inscrits dans le système ! Veuiller consulter l'administration"));
+                current = new Compte();
+                return "pretty:Index";
+            }
+            current = c;
+            return reponse;
         }
     }
 
@@ -161,6 +256,7 @@ public class CompteController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+
     }
 
     public Compte getCompte(java.lang.String id) {

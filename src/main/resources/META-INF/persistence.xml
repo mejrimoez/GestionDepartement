@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-    <persistence-unit name="persistanceUnit">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <jta-data-source>java:/jdbc/gestion-departem</jta-data-source>
-        <properties>
-            <!--      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value="6ac82b1f8e9b464b9ebe9f964632e4ff"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/gestion-departem"/>
-            <property name="javax.persistence.jdbc.user" value="gestion-departem"/>-->
-      
-      
-        </properties>
-    </persistence-unit>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+  <persistence-unit name="persist" transaction-type="JTA">
+    <jta-data-source>cloudbees-datasource</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
 </persistence>

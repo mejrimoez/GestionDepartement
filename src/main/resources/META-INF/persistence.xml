@@ -3,11 +3,14 @@
   <persistence-unit name="persistanceUnit">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <jta-data-source>java:/jdbc/gestion-departem</jta-data-source>
     <properties>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+<!--      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="6ac82b1f8e9b464b9ebe9f964632e4ff"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/gestion-departem"/>
-      <property name="javax.persistence.jdbc.user" value="gestion-departem"/>
+      <property name="javax.persistence.jdbc.user" value="gestion-departem"/>-->
+      
+      
     </properties>
   </persistence-unit>
 </persistence>
